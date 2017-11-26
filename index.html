@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>Даша</title>
+	<script>
+		var current_photo_number = 1;
+		var maximal_photo_number = 5;
+		function photo_onclick() {
+			if (current_photo_number >= maximal_photo_number) { current_photo_number = 0; }
+			document.getElementById("photo").src = ++current_photo_number + ".jpg";
+		}
+	</script>
+</head>
+<body>
+	<img id = "photo" src="1.jpg" alt="Smiley face" onclick="photo_onclick()" height="90%"/>
+</body>
+</html>
