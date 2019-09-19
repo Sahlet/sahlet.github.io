@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Robert task</title>
+	</head>
+
+	<body>
+		<h1>
+			DONALD + GERALD = ROBERT<br/>
+			D = 5<br/>
+			one character equals to one digit and vice versa<br/>
+			___________________<br/>
+			determine which digit corresponds to which character<br/>
+		</h1>
+
+		<textarea id="cnsl" rows="15" cols="180">
+var mapper = { D:5 };
+function getNumber(str)
+{
+	var copy = "";
+	for (i = 0; i < str.length; i++)
+	{
+		copy += mapper[String(str[i])];
+	}
+
+	return Number(copy);
+}
+
+var DONALD = "DONALD";
+var GERALD = "GERALD";
+var ROBERT = "ROBERT";
+
+var unknownLetters = ["O", "N", "A", "L", "G", "E", "R", "B", "T"];
+var free = [true, true, true, true, true, false, true, true, true, true];
+
+var counter = 0;
+
+function solve(letterIndex)
+{
+	if (letterIndex >= unknownLetters.length)
+	{
+		counter++;
+		if (counter == 10000)
+		{
+			console.log(counter);
+			counter = 0;
+		}
+
+		if (getNumber(DONALD) + getNumber(GERALD) == getNumber(ROBERT))
+		{
+			printRes("" + getNumber(DONALD) + " + " + getNumber(GERALD) + " = " + getNumber(ROBERT));
+			return true;
+		}
+
+		return false;
+	}
+
+	var i = 0
+
+	for (; i < free.length; i++)
+	{
+		if (free[i])
+		{
+			mapper[unknownLetters[letterIndex]] = i;
+			free[i] = false;
+			if (solve(letterIndex + 1))
+			{
+				return true;
+			}
+			free[i] = true;
+		}
+	}
+
+	return false;
+}
+			
+solve(0);
+		</textarea>
+		<br/>
+		<button onclick="run();">run</button>
+		<br/>
+		<br/>
+		<br/>
+		result:<br/>
+		<textarea id="result" rows="3" cols="180"></textarea>
+
+		<script type="text/javascript">
+			function printRes(str) {
+				var res = document.getElementById('result');
+			    res.value = str;
+			}
+
+			function run() {
+			    var el = document.getElementById('cnsl');
+			    var scriptText = el.value;
+			    var oldScript = document.getElementById('scriptContainer');
+			    var newScript;
+
+			    if (oldScript) {
+			      oldScript.parentNode.removeChild(oldScript);
+			    }
+
+			    newScript = document.createElement('script');
+			    newScript.id = 'scriptContainer';
+			    newScript.text = el.value;
+			    document.body.appendChild(newScript);
+			}
+		</script>
+	</body>
+</html>
