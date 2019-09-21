@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<title>The PILLARS puzzle</title>
+	</head>
+
+	<body>
+		<button onclick="setLoclalization('en')" style="display: inline">en</button>
+		<button onclick="setLoclalization('ru')">ru</button>
+		<br/><br/>
+		<div id="div_text_1"></div>
+		<img src="pillars_puzzle.png"/>
+	</body>
+
+	<script>
+		function setLoclalization(localization)
+		{
+			const en = {
+				"div_text_1":
+				"There are two pillars 50 in height.<br/>" +
+				"There is rope of length 80 hangs between the pillars.<br/>" +
+				"Distance from the ground to the rope is 10.<br/>" +
+				"What is the distance between the pillars?"
+			};
+			
+			const ru = {
+				"div_text_1":
+				"Есть два столба высотой 50.<br/>" +
+				"Между столбами висит веревка длиной 80.<br/>" +
+				"От земли до веревки расстояние 10.<br/>" +
+				"Какое расстояние между столбами?"
+			};
+
+			const resource = localization == "ru" ? ru : en;
+
+			for (let key in resource)
+			{
+				window.document.getElementById(key).innerHTML = resource[key];
+			}
+		}
+
+		setLoclalization("en");
+	</script>
+</html>

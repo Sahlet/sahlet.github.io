@@ -1,0 +1,11 @@
+en:
+There are two pillars 50 in height.
+There is rope of length 80 hangs between the pillars.
+Distance from the ground to the rope is 10.
+What is the distance between the pillars?
+
+ru:
+Есть два столба высотой 50.
+Между столбами висит веревка длиной 80.
+От земли до веревки расстояние 10.
+Какое расстояние между столбами?

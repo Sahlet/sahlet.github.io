@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+		<title>The PILLARS puzzle solution</title>
+	</head>
+
+	<body>
+		<button onclick="setLoclalization('en')" style="display: inline;">en</button>
+		<button onclick="setLoclalization('ru')">ru</button>
+		<br/><br/>
+		<a href="../" id="a_1"></a>
+		<div id="div_text_1"></div>
+		<img src="pillars_solution.png" style="vertical-align: top;"/>
+		<img src="pillars_answer.png" style="vertical-align: top;"/>
+		<br/><br/>
+		<div id="div_text_2"></div>
+		<h3>
+			<div id="div_text_3"></div>
+		</h3>
+	</body>
+
+	<script>
+		function setLoclalization(localization)
+		{
+			const en = {
+				"a_1":
+				"Go to puzzle",
+
+				"div_text_1":
+				"The answer is 0.<br/>" +
+				"Consider a right triangle CAB,<br/>" +
+				"where C is the middle of the rope, B is the top of any of the pillars,<br/>" +
+				"A is the projection of point C onto the same pillar.",
+				
+				"div_text_2":
+				"Suppose the distance between the pillars is greater than 0, then CA is greater than 0.<br/>" +
+				"Under gravity, the rope hangs so that its closest point to the ground<br/>" +
+				"located in the middle of the rope - point C.<br/>" +
+				"The length of the rope is 80, which means the length of half the rope is 40.<br/>" +
+				"From point C to earth 10, then from point A to earth 10.<br/>" +
+				"Column length 50, then BA = 50 - 10 = 40.<br/>" +
+				"By the Pythagorean theorem, BC = sqrt (BA ^ 2 + CA ^ 2), which is greater than BA,<br/>" +
+				"since CA is greater than 0.",
+
+				"div_text_3":
+				"We get that from the middle of the rope to the top of any of the pillars<br/>" +
+				"more than 40, which is impossible, since the length of the rope is 80.<br/>" +
+				"Under such conditions, the rope can hang only if<br/>" +
+				"from its middle to any of the pillars the distance is 0,<br/>" +
+				"which means that between the posts the distance is 0."
+			};
+			
+			const ru = {
+				"a_1":
+				"Перейти к условию",
+
+				"div_text_1":
+				"Ответ 0.<br/>" +
+				"Рассмотрим прямоугольный треугольник CAB,<br/>" +
+				"где C — середина веревки, B — вершина любого из столбов,<br/>" +
+				"A — проекция точки C на тот же столб.",
+				
+				"div_text_2":
+				"Предположим, что расстояние между столбами больше 0, тогда CA больше 0.<br/>" +
+				"Под силой тяжести веревка свисает так, что её ближайшая точка к земле<br/>" +
+				"находится на середине веревки — точка С.<br/>" +
+				"Длина веревки 80, значит длина половины веревки 40.<br/>" +
+				"От точки C до земли 10, значит от точки A до земли 10.<br/>" +
+				"Длина столба 50, значит BA = 50 - 10 = 40.<br/>" +
+				"По теореме Пифагора BC = sqrt(BA^2 + CA^2), что больше BA,<br/>" +
+				"так как CA больше 0.",
+
+				"div_text_3":
+				"Получаем, что от середины веревки до вершины любого из столбов<br/>" +
+				"больше 40, что невозможно, так как длина веревки 80.<br/>" +
+				"При таких условиях задачи веревка может свисать только если<br/>" +
+				"от её середины до любого из столбов расстояние 0,<br/>" +
+				"что означает, что между столбами расстояние 0."
+			};
+
+			const resource = localization == "ru" ? ru : en;
+
+			for (let key in resource)
+			{
+				window.document.getElementById(key).innerHTML = resource[key];
+			}
+		}
+
+		setLoclalization("en");
+	</script>
+</html>
