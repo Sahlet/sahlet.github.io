@@ -4,7 +4,55 @@
 		<title>The CAKE puzzle</title>
 	</head>
 
+	<body>
+		<button onclick="setLoclalization('en')" style="display: inline">en</button>
+		<button onclick="setLoclalization('ru')">ru</button>
+		<br/><br/>
+		<div id="div_text_1"></div>
+		<img src="cutted_cake.png"/>
+		<br/><br/>
+		<div id="div_text_2"></div>
+	</body>
+
 	<script>
-		window.location.replace("puzzle.html");
+		function setLoclalization(localization)
+		{
+			const en = {
+				"div_text_1":
+				"There is a rectangular cake.<br/>" +
+				"Some naughty boy cut a rectangular piece out of a cake and ate it.<br/>" +
+				"The cutout may be in any part of the cake.<br/>" +
+				"Example (top view):",
+
+				"div_text_2":
+				"We really need to split the cake in half.<br/>" +
+				"How to do it in one cut?<br/>" +
+				"One cut — one straight line that divides the cake<br/>" +
+				"so that the area of both halves coincides."
+			};
+			
+			const ru = {
+				"div_text_1":
+				"Есть прямоугольный торт.<br/>" +
+				"Какой-то шалун вырезал из торта прямоугольный кусок и съел.<br/>" +
+				"Место выреза может быть в любой части торта.<br/>" +
+				"Пример (вид сверху):",
+
+				"div_text_2":
+				"Нам очень надо поделить торт пополам.<br/>" +
+				"Как это сделать за один разрез?<br/>" +
+				"Один разрез — одна прямая линия, которая разделит торт так,<br/>" +
+				"что площадь обеих половин будет одинаковая."
+			};
+
+			const resource = localization == "ru" ? ru : en;
+
+			for (let key in resource)
+			{
+				window.document.getElementById(key).innerHTML = resource[key];
+			}
+		}
+
+		setLoclalization("en");
 	</script>
 </html>
