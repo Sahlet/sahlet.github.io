@@ -1,0 +1,11 @@
+en:
+DONALD + GERALD = ROBERT
+D = 5
+One character equals to one digit and vice versa.
+Determine which digit corresponds to which character.
+
+ru:
+DONALD + GERALD = ROBERT
+D = 5
+Один символ равен одной цифре и наоборот.
+Определите, какая цифра соответствует какому символу.

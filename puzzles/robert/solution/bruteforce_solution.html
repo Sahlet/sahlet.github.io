@@ -1,17 +1,20 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Robert task</title>
+		<title>The ROBERT puzzle solution</title>
 	</head>
 
 	<body>
-		<h1>
+		<button onclick="setLoclalization('en')" style="display: inline">en</button>
+		<button onclick="setLoclalization('ru')">ru</button>
+		<br/><br/>
+		<a href="logical_solution.html" id="a_1"></a>
+		<br/>
+		<h3>
 			DONALD + GERALD = ROBERT<br/>
 			D = 5<br/>
-			one character equals to one digit and vice versa<br/>
-			___________________<br/>
-			determine which digit corresponds to which character<br/>
-		</h1>
+			<div id="div_text_1"></div>
+		</h3>
 
 		<textarea id="cnsl" rows="15" cols="180">
 var mapper = { D:5 };
@@ -77,11 +80,11 @@ function solve(letterIndex)
 solve(0);
 		</textarea>
 		<br/>
-		<button onclick="run();">run</button>
+		<button onclick="run();" id="button_text_1"></button>
 		<br/>
 		<br/>
 		<br/>
-		result:<br/>
+		<div id="div_text_2"></div>
 		<textarea id="result" rows="3" cols="180"></textarea>
 
 		<script type="text/javascript">
@@ -105,6 +108,48 @@ solve(0);
 			    newScript.text = el.value;
 			    document.body.appendChild(newScript);
 			}
+
+			function setLoclalization(localization)
+			{
+				const en = {
+					"a_1":
+					"Go to logical solution conclusion",
+
+					"div_text_1":
+					"One character equals to one digit and vice versa.<br/>" +
+					"Determine which digit corresponds to which character.",
+					
+					"button_text_1":
+					"run",
+
+					"div_text_2":
+					"result:"
+				};
+				
+				const ru = {
+					"a_1":
+					"Перейти к логическому выводу решения",
+
+					"div_text_1":
+					"Один символ равен одной цифре и наоборот.<br/>" +
+					"Определите, какая цифра соответствует какому символу.",
+					
+					"button_text_1":
+					"запустить",
+
+					"div_text_2":
+					"результат:"
+				};
+
+				const resource = localization == "ru" ? ru : en;
+
+				for (let key in resource)
+				{
+					window.document.getElementById(key).innerHTML = resource[key];
+				}
+			}
+
+			setLoclalization("en");
 		</script>
 	</body>
 </html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<title>The ROBERT puzzle</title>
+	</head>
+
+	<body>
+		<button onclick="setLoclalization('en')" style="display: inline">en</button>
+		<button onclick="setLoclalization('ru')">ru</button>
+		<br/>
+		<h3>
+			DONALD + GERALD = ROBERT<br/>
+			D = 5<br/>
+			<div id="div_text_1"></div>
+		</h3>
+	</body>
+
+	<script>
+		function setLoclalization(localization)
+		{
+			const en = {
+				"div_text_1":
+				"One character equals to one digit and vice versa.<br/>" +
+				"Determine which digit corresponds to which character."
+			};
+			
+			const ru = {
+				"div_text_1":
+				"Один символ равен одной цифре и наоборот.<br/>" +
+				"Определите, какая цифра соответствует какому символу."
+			};
+
+			const resource = localization == "ru" ? ru : en;
+
+			for (let key in resource)
+			{
+				window.document.getElementById(key).innerHTML = resource[key];
+			}
+		}
+
+		setLoclalization("en");
+	</script>
+</html>
