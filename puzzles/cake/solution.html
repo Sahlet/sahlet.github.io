@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<title>The CAKE puzzle solution</title>
+	</head>
+
+	<body>
+		<button onclick="setLoclalization('en')" style="display: inline">en</button>
+		<button onclick="setLoclalization('ru')">ru</button>
+		<br/><br/>
+		<a href="puzzle.html" id="a_1"></a>
+		<div id="div_text_1"></div>
+		<img src="cutted_cake_1.png"/>
+		<br/><br/>
+		<div id="div_text_2"></div>
+		<img src="cutted_cake_2.png"/>
+		<br/><br/>
+	</body>
+
+	<script>
+		function setLoclalization(localization)
+		{
+			const en = {
+				"a_1":
+				"Go to puzzle",
+
+				"div_text_1":
+				"You need to find the center of the cake and the center<br/>" +
+				"of the rectangular cutout and cut the cake in a straight line<br/>" +
+				"that passes through these two points:",
+
+				"div_text_2":
+				"The center of the rectangle lies at the intersection of its diagonals,<br/>" +
+				"so that the search for the center is reduced to superimposing<br/>" +
+				"two stripes applied to the corners of the rectangle."
+			};
+			
+			const ru = {
+				"a_1":
+				"Перейти к условию",
+
+				"div_text_1":
+				"Нужно наметить центр торта и центр прямоугольного выреза<br/>" +
+				"и разрезать торт по прямой, которая проходит через эти две точки:",
+
+				"div_text_2":
+				"Центр прямоугольника лежит на пересечении его диагоналей,<br/>" +
+				"так что поиск центра сводится к наложению двух полосок,<br/>" +
+				"приложенных к углам прямоугольника."
+			};
+
+			const resource = localization == "ru" ? ru : en;
+
+			for (let key in resource)
+			{
+				window.document.getElementById(key).innerHTML = resource[key];
+			}
+		}
+
+		setLoclalization("en");
+	</script>
+</html>
