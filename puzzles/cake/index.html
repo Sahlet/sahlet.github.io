@@ -6,7 +6,9 @@
 
 	<body>
 		<button onclick="setLoclalization('en')" style="display: inline">en</button>
-		<button onclick="setLoclalization('ru')">ru</button>
+		<button onclick="setLoclalization('ru')" style="display: inline">ru</button>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<a id="solution_link" hidden></a>
 		<br/><br/>
 		<div id="div_text_1"></div>
 		<img src="cutted_cake.png"/>
@@ -18,6 +20,9 @@
 		function setLoclalization(localization)
 		{
 			const en = {
+				"solution_link":
+				"Go to solution",
+
 				"div_text_1":
 				"There is a rectangular cake.<br/>" +
 				"Some naughty boy cut a rectangular piece out of a cake and ate it.<br/>" +
@@ -32,6 +37,9 @@
 			};
 			
 			const ru = {
+				"solution_link":
+				"Перейти к решению",
+
 				"div_text_1":
 				"Есть прямоугольный торт.<br/>" +
 				"Какой-то шалун вырезал из торта прямоугольный кусок и съел.<br/>" +
@@ -54,5 +62,33 @@
 		}
 
 		setLoclalization("en");
+
+		let puzzlesRoot = null;
+		{
+			const substr = "/puzzles/";
+			const substrPos = window.location.href.search(substr);
+			if (substrPos >= 0)
+			{
+				puzzlesRoot = window.location.href.substr(0, substrPos + substr.length);
+			}
+		}
+
+		if (puzzlesRoot)
+		{
+			const request = new XMLHttpRequest();
+			request.addEventListener("load", function() {
+				console.log("loaded");
+				const solutionSettings = JSON.parse(this.responseText);
+				if (solutionSettings.solutionEnabled)
+				{
+					console.log("solutionEnabled");
+					const solutionLink = window.document.getElementById("solution_link");
+					solutionLink.hidden = false;
+					solutionLink.href = solutionSettings.solutionPath;
+				}
+			});
+			request.open("GET", puzzlesRoot + "solution_path.json");
+			request.send();
+		}
 	</script>
 </html>
