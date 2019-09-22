@@ -6,7 +6,9 @@
 
 	<body>
 		<button onclick="setLoclalization('en')" style="display: inline">en</button>
-		<button onclick="setLoclalization('ru')">ru</button>
+		<button onclick="setLoclalization('ru')" style="display: inline">ru</button>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<a id="solution_link" hidden></a>
 		<br/><br/>
 		<div id="div_text_1"></div>
 		<img src="pillars_puzzle.png"/>
@@ -16,6 +18,9 @@
 		function setLoclalization(localization)
 		{
 			const en = {
+				"solution_link":
+				"Go to solution",
+
 				"div_text_1":
 				"There are two pillars 50 in height.<br/>" +
 				"There is rope of length 80 hangs between the pillars.<br/>" +
@@ -24,6 +29,9 @@
 			};
 			
 			const ru = {
+				"solution_link":
+				"Перейти к решению",
+				
 				"div_text_1":
 				"Есть два столба высотой 50.<br/>" +
 				"Между столбами висит веревка длиной 80.<br/>" +
@@ -40,5 +48,37 @@
 		}
 
 		setLoclalization("en");
+
+		let solutionInfoPath = null;
+		{
+			solutionInfoPath = "../solution_path.json"
+			/*
+			const substr = "/puzzles/";
+			const substrPos = window.location.href.search(substr);
+			if (substrPos >= 0)
+			{
+				solutionInfoPath = window.location.href.substr(0, substrPos + substr.length);
+				solutionInfoPath += "solution_path.json"
+			}
+			*/
+		}
+
+		if (solutionInfoPath)
+		{
+			const request = new XMLHttpRequest();
+			request.addEventListener("load", function() {
+				console.log("loaded");
+				const solutionSettings = JSON.parse(this.responseText);
+				if (solutionSettings.solutionEnabled)
+				{
+					console.log("solutionEnabled");
+					const solutionLink = window.document.getElementById("solution_link");
+					solutionLink.hidden = false;
+					solutionLink.href = solutionSettings.solutionPath;
+				}
+			});
+			request.open("GET", solutionInfoPath);
+			request.send();
+		}
 	</script>
 </html>
