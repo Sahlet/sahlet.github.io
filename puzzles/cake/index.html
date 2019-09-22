@@ -63,17 +63,21 @@
 
 		setLoclalization("en");
 
-		let puzzlesRoot = null;
+		let solutionInfoPath = null;
 		{
+			solutionInfoPath = "../solution_path.json"
+			/*
 			const substr = "/puzzles/";
 			const substrPos = window.location.href.search(substr);
 			if (substrPos >= 0)
 			{
-				puzzlesRoot = window.location.href.substr(0, substrPos + substr.length);
+				solutionInfoPath = window.location.href.substr(0, substrPos + substr.length);
+				solutionInfoPath += "solution_path.json"
 			}
+			*/
 		}
 
-		if (puzzlesRoot)
+		if (solutionInfoPath)
 		{
 			const request = new XMLHttpRequest();
 			request.addEventListener("load", function() {
@@ -87,7 +91,7 @@
 					solutionLink.href = solutionSettings.solutionPath;
 				}
 			});
-			request.open("GET", puzzlesRoot + "solution_path.json");
+			request.open("GET", solutionInfoPath);
 			request.send();
 		}
 	</script>
